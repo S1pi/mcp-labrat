@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voice MCP Calendar Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body class="layout-neon-noir">
+    <div class="preview-bar" role="group" aria-label="Layout preview">
+      <button
+        class="preview-btn"
+        data-layout="layout-neon-noir"
+        aria-pressed="true"
+      >
+        Neon Noir
+      </button>
+      <button
+        class="preview-btn"
+        data-layout="layout-zen-garden"
+        aria-pressed="false"
+      >
+        Zen Garden
+      </button>
+      <button
+        class="preview-btn"
+        data-layout="layout-retro-terminal"
+        aria-pressed="false"
+      >
+        Retro Terminal
+      </button>
+    </div>
+
+    <div class="page">
+      <div class="app" role="application" aria-label="Voice MCP Calendar Demo">
+        <header class="app-header">
+          <div class="app-title-wrap">
+            <p class="app-eyebrow">Voice → MCP → Calendar</p>
+            <h1 class="app-title">Voice MCP Calendar Demo</h1>
+            <p class="app-subtitle">
+              Record a voice command, send it to the backend, and read or listen
+              to the response.
+            </p>
+          </div>
+
+          <div class="app-tag" aria-label="Environment">Local</div>
+        </header>
+
+        <main class="app-main">
+          <section class="panel panel--controls" aria-label="Controls">
+            <div class="controls">
+              <button id="start" class="action action--primary">
+                Start Recording
+              </button>
+              <button id="send" class="action">Send</button>
+            </div>
+            <p class="help">Allow microphone access when prompted.</p>
+          </section>
+
+          <section class="panel panel--output" aria-label="Output">
+            <pre id="output" class="output" aria-live="polite"></pre>
+          </section>
+        </main>
+
+        <footer class="app-footer">
+          <span>Tip: Speak naturally (Finnish works).</span>
+          <span class="fine">Audio is sent to the backend for processing.</span>
+        </footer>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

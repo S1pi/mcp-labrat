@@ -1,0 +1,11 @@
+<D:mkcol xmlns:D="DAV:" xmlns:C="urn:ietf:params:xml:ns:caldav">
+  <D:set>
+    <D:prop>
+      <D:resourcetype>
+        <D:collection/>
+        <C:calendar/>
+      </D:resourcetype>
+      <D:displayname>Default Calendar</D:displayname>
+    </D:prop>
+  </D:set>
+</D:mkcol>

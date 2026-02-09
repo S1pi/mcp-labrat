@@ -1,0 +1,364 @@
+/*
+  Three totally new layout “skins”:
+  - layout-neon-noir: Dark, vibrant neon, high contrast
+  - layout-zen-garden: Light, organic, soft
+  - layout-retro-terminal: Monospace, scanlines, amber/green
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+.page {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+/* Base Variables (Defaults) */
+:root {
+  --bg: #fff;
+  --text: #000;
+}
+
+/* Preview Bar */
+.preview-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.preview-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+.preview-btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accentText);
+}
+
+/* Base Layout Structure */
+.page {
+  padding-top: 60px; /* space for preview bar */
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.app {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.app-header {
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.app-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.app-subtitle {
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+.app-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  background: var(--panel-2);
+  margin-top: 10px;
+}
+
+.app-title-wrap {
+  margin-bottom: 10px;
+}
+
+.app-eyebrow {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+.action {
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.action--primary {
+  background: var(--accent);
+  color: var(--accentText);
+  border-color: var(--accent);
+}
+
+.action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.help {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.output {
+  width: 100%;
+  min-height: 200px;
+  padding: 15px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+.app-footer {
+  text-align: center;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  padding-bottom: 20px;
+}
+
+.fine {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+/* =========================================
+   THEME 1: NEON NOIR
+   ========================================= */
+body.layout-neon-noir {
+  --bg: #050510;
+  --text: #e0e0ff;
+  --panel: rgba(20, 20, 35, 0.8);
+  --panel-2: rgba(40, 40, 60, 0.5);
+  --border: #3d3d5c;
+  --accent: #00f3ff;
+  --accentText: #000;
+  --radius: 4px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.layout-neon-noir .app-header {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+}
+
+body.layout-neon-noir .app-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px var(--accent);
+}
+
+body.layout-neon-noir .action,
+body.layout-neon-noir .preview-btn {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--accent);
+}
+
+body.layout-neon-noir .action--primary {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* =========================================
+   THEME 2: ZEN GARDEN
+   ========================================= */
+body.layout-zen-garden {
+  --bg: #f2f0e9; /* Slightly more defined parchment color */
+  --text: #2d2620; /* Much darker for better readability (WCAG AA compliant) */
+  --panel: #ffffff;
+  --panel-2: #e8e4db; /* More visible secondary panel */
+  --border: #cbc4b6; /* Distinct border */
+  --accent: #5a7d57; /* Deep sage green */
+  --accentText: #fff;
+  --radius: 24px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+body.layout-zen-garden .app {
+  max-width: 900px;
+}
+
+body.layout-zen-garden .app-header {
+  text-align: center;
+  background: transparent;
+  border: none;
+}
+
+body.layout-zen-garden .app-title {
+  font-weight: bold; /* Increased weight for visibility */
+  font-style: italic;
+  color: #1a1612; /* Almost black */
+}
+
+body.layout-zen-garden .panel {
+  box-shadow: 0 4px 12px rgba(93, 85, 72, 0.08); /* Softer but defined shadow */
+  border: 1px solid var(--border); /* Added border back for definition */
+}
+
+body.layout-zen-garden .action {
+  border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+}
+
+body.layout-zen-garden .output {
+  background: #fff;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  line-height: 1.6;
+  color: #2d2620;
+}
+
+body.layout-zen-garden .preview-btn {
+  border-radius: 20px;
+  background: #dcd8cf;
+  color: #2d2620;
+  font-weight: 600;
+}
+body.layout-zen-garden .preview-btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: white;
+}
+
+/* =========================================
+   THEME 3: RETRO TERMINAL
+   ========================================= */
+body.layout-retro-terminal {
+  --bg: #000000;
+  --text: #ffb000; /* Amber */
+  --panel: #000000;
+  --panel-2: #111111;
+  --border: #ffb000;
+  --accent: #ffb000;
+  --accentText: #000000;
+  --radius: 0px;
+  font-family: monospace;
+}
+
+/* Scanline effect */
+body.layout-retro-terminal::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
+  z-index: 999;
+  background-size:
+    100% 2px,
+    3px 100%;
+  pointer-events: none;
+}
+
+body.layout-retro-terminal .app-header,
+body.layout-retro-terminal .panel,
+body.layout-retro-terminal .action,
+body.layout-retro-terminal .output,
+body.layout-retro-terminal .preview-btn {
+  border: 2px solid var(--border);
+  border-radius: 0;
+  background: #000;
+  color: var(--text);
+  box-shadow: none;
+}
+
+body.layout-retro-terminal .action--primary,
+body.layout-retro-terminal .preview-btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: #000;
+}
+
+body.layout-retro-terminal .app-title::before {
+  content: "> ";
+}
+
+body.layout-retro-terminal .output {
+  border-style: dashed;
+}
+
+body.layout-retro-terminal .app-footer,
+body.layout-retro-terminal .app-eyebrow,
+body.layout-retro-terminal .help {
+  color: var(--text);
+  opacity: 0.8;
+}
